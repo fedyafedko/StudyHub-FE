@@ -13,9 +13,9 @@ export const API = {
                 },
                 params
             });
-            return { success: true, data: response.data };
+            return { success: true, data: response.data, statusCode: response.status };
         } catch (error: any) {
-            return { success: false, error: error.response?.data };
+            return { success: false, error: error.response?.data, statusCode: error.response?.status };
         }
     },
 
@@ -31,9 +31,9 @@ export const API = {
                     ...headers
                 }
             });
-            return { success: true, data: response.data };
+            return { success: true, data: response.data, statusCode: response.status };
         } catch (error: any) {
-            return { success: false, error: error.response?.data };
+            return { success: false, error: error.response?.data, statusCode: error.response?.status };
         }
     },
 
@@ -47,9 +47,9 @@ export const API = {
                     'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
                 }
             });
-            return { success: true, data: response.data };
+            return { success: true, data: response.data, statusCode: response.status };
         } catch (error: any) {
-            return { success: false, error: error.response?.data };
+            return { success: false, error: error.response?.data, statusCode: error.response?.status };
         }
     },
 
@@ -60,9 +60,9 @@ export const API = {
                     'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
                 }
             });
-            return { success: true, data: response.data };
+            return { success: true, data: response.data, statusCode: response.status };
         } catch (error: any) {
-            return { success: false, error: error.response?.data };
+            return { success: false, error: error.response?.data, statusCode: error.response?.status };
         }
     },
 };

@@ -37,7 +37,7 @@ function App() {
               <Route path="/sign-up/:token" element={<SignUpPage />} />
               <Route path="/sign-in" element={<SignInPage />} />
               <Route path="/" element={<HomePage />} />
-              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/student/dashboard" element={<DashboardPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </BrowserRouter>

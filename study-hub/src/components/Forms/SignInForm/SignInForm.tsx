@@ -12,6 +12,7 @@ import signInFormValidation from '../../../validation/SignInFormValidation';
 import useNotification from "../../../hooks/useNotification";
 import { useNavigate } from "react-router-dom";
 import ForgotPasswordWindow from "../../ForgotPasswordWindow/ForgotPasswordWindow";
+import User from "../../../api/User";
 
 export interface SignIn {
     email: string;
@@ -40,8 +41,10 @@ const SignInForm = () => {
 
     const handleSignIn = async (data: SignIn) => {
         const response = await Auth.signIn(data as SignInRequest);
+        const user = await User.me();
+
         if (response === undefined) {
-            navigate('/');
+            navigate(`/${user?.role.toLowerCase()}/dashboard`);
         }
         else {
             notifyError(response);

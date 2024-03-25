@@ -1,8 +1,9 @@
 import { Box, Typography, Card, Button, Avatar } from "@mui/material";
 import courses from "../../img/courses.png";
 import styles from './ProfileMenu.module.css';
+import UserResponse from "../../api/models/response/UserResponse";
 
-const ProfileMenu = () => {
+const ProfileMenu = (props: {user: UserResponse | undefined}) => {
     return (
         <Box className={styles.profileBox}>
             <Typography sx={{
@@ -11,6 +12,11 @@ const ProfileMenu = () => {
                 alignSelf: 'flex-start',
             }}>Profile</Typography>
             <Card className={styles.profileCard} sx={{ borderRadius: '24px' }}>
+                <Box className={styles.nameBox} sx={{ alignItems: 'center' }}>
+                    <Typography sx={{ fontWeight: 'bold', fontSize: '16px' }}>{props.user?.fullName}</Typography>
+                    <Typography sx={{ fontSize: '14px' }}>{props.user?.email}</Typography>
+                </Box>
+                <Avatar sx={{ width: 90, height: 90 }}>M</Avatar>
                 <Button
                     color="primary"
                     variant="contained"
@@ -18,11 +24,6 @@ const ProfileMenu = () => {
                     sx={{ textTransform: 'none', borderRadius: '24px' }}>
                     Profile
                 </Button>
-                <Avatar sx={{ width: 90, height: 90 }}>M</Avatar>
-                <Box className={styles.nameBox} sx={{ alignItems: 'center' }}>
-                    <Typography sx={{ fontWeight: 'bold', fontSize: '16px' }}>Владислав Федько</Typography>
-                    <Typography sx={{ fontSize: '14px' }}>vladfedko35@gmail.com</Typography>
-                </Box>
             </Card>
             <Card className={styles.nextExamCard}
                 sx={{ borderRadius: '24px' }}>

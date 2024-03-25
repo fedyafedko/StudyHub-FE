@@ -7,12 +7,18 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import styles from './ButtonsMenu.module.css';
 import { useNavigate } from "react-router-dom";
+import UserResponse from "../../api/models/response/UserResponse";
 
-const ButtonsMenu = (props: { activeView: string }) => {
+const ButtonsMenu = (props: { activeView: string, user: UserResponse | undefined }) => {
     const navigate = useNavigate();
 
     const handleButtonClick = (buttonName: any) => {
         navigate(`/${buttonName}`);
+    };
+
+    const handleSignOut = () => {
+        localStorage.clear();
+        navigate('/');
     };
     return (
         <Box className={styles.menuBox}>
@@ -26,9 +32,9 @@ const ButtonsMenu = (props: { activeView: string }) => {
                             fontWeight: 'bold',
                             fontSize: '14px',
                         }}>
-                        Владислав Федько
+                        {props.user?.fullName}
                     </Typography>
-                    <Typography sx={{ fontSize: '11px' }}>vladfedko35@gmail.com</Typography>
+                    <Typography sx={{ fontSize: '11px' }}>{props.user?.email}</Typography>
                 </Box>
             </Box>
 
@@ -78,7 +84,7 @@ const ButtonsMenu = (props: { activeView: string }) => {
                 <Box
                     className={styles.button}
                     sx={{ backgroundColor: props.activeView === 'sign-out' ? '#f0f0f0' : 'transparent' }}
-                    onClick={() => handleButtonClick('sign-out')}
+                    onClick={() => handleSignOut()}
                 >
                     <ExitToAppIcon sx={{ width: '30px', height: '30px' }} />
                     <Typography sx={{ fontSize: '20px' }}>Sign out</Typography>
