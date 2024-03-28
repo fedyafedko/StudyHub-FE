@@ -1,4 +1,5 @@
 interface UserResponse {
+    id: string;
     fullName: string;
     telegram: string;
     group?: string;

@@ -10,6 +10,7 @@ import { SnackbarProvider } from 'notistack';
 import ForgotPasswordPage from './pages/ForgotPasswordPage/ForgotPasswordPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 const theme = createTheme({
   palette: {
@@ -38,6 +39,7 @@ function App() {
               <Route path="/sign-in" element={<SignInPage />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/student/dashboard" element={<DashboardPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </BrowserRouter>

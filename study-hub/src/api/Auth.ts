@@ -14,7 +14,7 @@ const Auth = {
             localStorage.setItem('accessToken', tokens.accessToken ?? '');
             localStorage.setItem('refreshToken', tokens.refreshToken ?? '');
 
-            //Auth.startSilentRefresh();
+            Auth.startSilentRefresh();
             return undefined;
         }
 
@@ -99,16 +99,17 @@ const Auth = {
         return response.error;
     },
     startSilentRefresh: () => {
-        setInterval(async () => {
+        const startSilentRefreshInterval = setInterval(async () => {
             const accessToken = localStorage.getItem('accessToken') ?? '';
             const refreshToken = localStorage.getItem('refreshToken') ?? '';
 
             const result = await Auth.refreshToken({ accessToken, refreshToken });
             if (!result) {
                 console.log('Silent refresh failed');
+                clearInterval(startSilentRefreshInterval);
             }
-        }, 600000);
-    },
+        }, 600000)
+    }
 }
 
 export default Auth;

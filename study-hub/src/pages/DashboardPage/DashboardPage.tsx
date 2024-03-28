@@ -9,7 +9,6 @@ import UserResponse from "../../api/models/response/UserResponse";
 import User from "../../api/User";
 
 const DashboardPage = () => {
-
   const [user, setUser] = useState<UserResponse | undefined>(undefined);
 
     useEffect(() => {
@@ -31,8 +30,7 @@ const DashboardPage = () => {
       <Box className={styles.pageBox}>
         <ButtonsMenu activeView="dashboard" user={user}/>
         <Box className={styles.contentBox}>
-          <Box className={styles.line}>
-          </Box>
+          <Box className={styles.line}/>
           <MarkTable/>
         </Box>
         <ProfileMenu user={user}/>

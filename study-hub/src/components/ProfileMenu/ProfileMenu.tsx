@@ -2,8 +2,10 @@ import { Box, Typography, Card, Button, Avatar } from "@mui/material";
 import courses from "../../img/courses.png";
 import styles from './ProfileMenu.module.css';
 import UserResponse from "../../api/models/response/UserResponse";
+import { useNavigate } from "react-router-dom";
 
 const ProfileMenu = (props: {user: UserResponse | undefined}) => {
+    const navigate = useNavigate();
     return (
         <Box className={styles.profileBox}>
             <Typography sx={{
@@ -16,11 +18,12 @@ const ProfileMenu = (props: {user: UserResponse | undefined}) => {
                     <Typography sx={{ fontWeight: 'bold', fontSize: '16px' }}>{props.user?.fullName}</Typography>
                     <Typography sx={{ fontSize: '14px' }}>{props.user?.email}</Typography>
                 </Box>
-                <Avatar sx={{ width: 90, height: 90 }}>M</Avatar>
+                <Avatar sx={{ width: 90, height: 90 }} src={`http://localhost:5209${props.user?.avatar}`}>M</Avatar>
                 <Button
                     color="primary"
                     variant="contained"
                     className={styles.button}
+                    onClick={() => { navigate('/profile') }}
                     sx={{ textTransform: 'none', borderRadius: '24px' }}>
                     Profile
                 </Button>

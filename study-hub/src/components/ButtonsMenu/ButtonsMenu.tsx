@@ -13,7 +13,7 @@ const ButtonsMenu = (props: { activeView: string, user: UserResponse | undefined
     const navigate = useNavigate();
 
     const handleButtonClick = (buttonName: any) => {
-        navigate(`/${buttonName}`);
+        navigate(`/${props.user?.role.toLocaleLowerCase()}/${buttonName}`);
     };
 
     const handleSignOut = () => {
@@ -23,8 +23,9 @@ const ButtonsMenu = (props: { activeView: string, user: UserResponse | undefined
     return (
         <Box className={styles.menuBox}>
             <Box className={styles.profileBox}>
-                <IconButton size="medium">
-                    <Avatar sx={{ width: 40, height: 40 }}>M</Avatar>
+                <IconButton size="medium"
+                onClick={() => navigate('/profile')}>
+                    <Avatar sx={{ width: 40, height: 40 }} src={`http://localhost:5209${props.user?.avatar}`}>M</Avatar>
                 </IconButton>
                 <Box>
                     <Typography
