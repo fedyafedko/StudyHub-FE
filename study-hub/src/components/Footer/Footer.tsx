@@ -21,19 +21,15 @@ const Footer = () => {
                     </Typography>
                     <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>GitHub</Link>
                     <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>YouTube</Link>
-                    <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>LinkedIn</Link>
                 </Box>
                 <Box className={styles.linksColumn}>
                     <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Get support</Link>
                     <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Become a teacher</Link>
-                    <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Add your course</Link>
                     <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Join as a student</Link>
                 </Box>
                 <Box className={styles.linksColumn}>
-                    <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Read your articles</Link>
-                    <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Buy subscription</Link>
-                    <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Subject available</Link>
-                    <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Discount on first test</Link>
+                    <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>About us</Link>
+                    <Link href="#" color="inherit" sx={{ textDecoration: 'none' }}>Privacy</Link>
                 </Box>
             </Box>
         </Box>

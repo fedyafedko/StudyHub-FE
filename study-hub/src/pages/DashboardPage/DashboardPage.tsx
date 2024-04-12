@@ -3,10 +3,12 @@ import ButtonsMenu from "../../components/ButtonsMenu/ButtonsMenu";
 import Footer from "../../components/Footer/Footer";
 import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
 import styles from './DashboardPage.module.css';
-import MarkTable from "../../components/MarkTable/MarkTable";
+import StudentMarkTable from "../../components/StudentMarkTable/StudentMarkTable";
 import { useEffect, useState } from "react";
 import UserResponse from "../../api/models/response/UserResponse";
 import User from "../../api/User";
+import SubjectsCard from "../../components/SubjectsCard/SubjectsCard";
+import DashboardInviteForm from "../../components/DashboardInviteForm/DashboardInviteForm";
 
 const DashboardPage = () => {
   const [user, setUser] = useState<UserResponse | undefined>(undefined);
@@ -31,7 +33,19 @@ const DashboardPage = () => {
         <ButtonsMenu activeView="dashboard" user={user}/>
         <Box className={styles.contentBox}>
           <Box className={styles.line}/>
-          <MarkTable/>
+          {
+            user?.role.toLowerCase() === 'student' && (
+              <StudentMarkTable/>
+            )
+          }
+          {
+            user?.role.toLowerCase() === 'teacher' && (
+              <Box className={styles.teacherBox}>
+                <DashboardInviteForm />
+                <SubjectsCard />
+              </Box>
+            )
+          }
         </Box>
         <ProfileMenu user={user}/>
       </Box>

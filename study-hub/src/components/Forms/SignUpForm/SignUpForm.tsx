@@ -57,8 +57,13 @@ const SignUpForm = () => {
             myHeaders.append("accept", "*/*");
             myHeaders.append("Authorization-Code", codeResp.code);
 
-            const response = await Auth.signUpGoogle(codeResp.code);
-            console.log(response);
+            const response = await Auth.signUpGoogle(codeResp.code, token == undefined ? '' : token);
+            if (response === undefined) {
+                navigate('/'); 
+            }
+            else {
+                notifyError(response);
+            }
         },
         flow: 'auth-code',
     });
