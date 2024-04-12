@@ -1,0 +1,40 @@
+.inviteCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 500px;
+    background-color: #ffffff;
+    gap: 20px;
+}
+
+.inputPaper{
+    display: flex;
+    align-items: center;
+    width: 230px;
+    height: 40px;
+    padding: 4px, 6px;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.button{
+    width: 100px;
+    height: 40px;
+}
+
+.chipBox{
+    display: flex;
+    justify-content: center;
+    height: 250px;
+    list-style: none;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
