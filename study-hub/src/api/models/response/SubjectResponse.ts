@@ -1,6 +1,8 @@
+import UserResponse from "./UserResponse";
+
 interface SubjectResponse {
     id: string;
-    teacherId: string;
+    teacher: UserResponse;
     title: string;
 }
 

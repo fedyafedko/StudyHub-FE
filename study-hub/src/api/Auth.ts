@@ -48,8 +48,8 @@ const Auth = {
 
         return response.error;
     },
-    signUpGoogle: async (token: string): Promise<any> => {
-        const response = await API.post<{}, AuthSuccessResponse>('/google-auth/google-register', { }, { 'Authorization-Code': token });
+    signUpGoogle: async (code: string, token: string): Promise<any> => {
+        const response = await API.post<{}, AuthSuccessResponse>(`/google-auth/google-register?token=${token}`, { }, { 'Authorization-Code': code });
 
         if (response.success) {
             const tokens = response.data as AuthSuccessResponse;
