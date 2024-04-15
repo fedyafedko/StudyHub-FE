@@ -1,4 +1,4 @@
-interface AuthSuccessResponse {
+interface AuthSuccessResponse{
     accessToken: string;
     refreshToken: string;
 }

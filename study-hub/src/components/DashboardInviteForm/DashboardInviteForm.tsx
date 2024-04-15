@@ -45,9 +45,12 @@ const DashboardInviteForm = () => {
         if (response?.failed && response.failed.length > 0) {
             response.failed.map((error) => notifyError(`Enable to invite ${error}`));
         }
-        else {
+        else if (response?.success){
             notifySuccess('Invited successfully');
             setInvite([]);
+        }
+        else {
+            notifyError('Something went wrong');
         }
     };
 

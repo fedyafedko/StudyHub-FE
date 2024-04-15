@@ -3,6 +3,7 @@ import courses from "../../img/courses.png";
 import styles from './ProfileMenu.module.css';
 import UserResponse from "../../api/models/response/UserResponse";
 import { useNavigate } from "react-router-dom";
+import profile from '../../img/Profile.png';
 
 const ProfileMenu = (props: {user: UserResponse | undefined}) => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const ProfileMenu = (props: {user: UserResponse | undefined}) => {
                     <Typography sx={{ fontWeight: 'bold', fontSize: '16px' }}>{props.user?.fullName}</Typography>
                     <Typography sx={{ fontSize: '14px' }}>{props.user?.email}</Typography>
                 </Box>
-                <Avatar sx={{ width: 90, height: 90 }} src={`http://localhost:5209${props.user?.avatar}`}>M</Avatar>
+                <Avatar sx={{ width: 90, height: 90 }} src={props.user?.avatar ? `http://localhost:5209${props.user?.avatar}` : profile}>M</Avatar>
                 <Button
                     color="primary"
                     variant="contained"

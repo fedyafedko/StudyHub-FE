@@ -8,6 +8,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import styles from './ButtonsMenu.module.css';
 import { useNavigate } from "react-router-dom";
 import UserResponse from "../../api/models/response/UserResponse";
+import profile from '../../img/Profile.png';
+
 
 const ButtonsMenu = (props: { activeView: string, user: UserResponse | undefined }) => {
     const navigate = useNavigate();
@@ -21,7 +23,7 @@ const ButtonsMenu = (props: { activeView: string, user: UserResponse | undefined
             <Box className={styles.profileBox}>
                 <IconButton size="medium"
                     onClick={() => navigate('/profile')}>
-                    <Avatar sx={{ width: 40, height: 40 }} src={`http://localhost:5209${props.user?.avatar}`}>M</Avatar>
+                    <Avatar sx={{ width: 40, height: 40 }} src={props.user?.avatar ? `http://localhost:5209${props.user?.avatar}` : profile}>M</Avatar>
                 </IconButton>
                 <Box>
                     <Typography

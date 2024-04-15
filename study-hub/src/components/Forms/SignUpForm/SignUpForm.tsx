@@ -59,7 +59,7 @@ const SignUpForm = () => {
 
             const response = await Auth.signUpGoogle(codeResp.code, token == undefined ? '' : token);
             if (response === undefined) {
-                navigate('/'); 
+                navigate('/dashboard'); 
             }
             else {
                 notifyError(response);

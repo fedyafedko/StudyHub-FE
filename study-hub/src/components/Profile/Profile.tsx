@@ -2,12 +2,15 @@ import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import UserResponse from "../../api/models/response/UserResponse";
 import Field from "../Field/Field";
 import styles from "./Profile.module.css";
+import profile from '../../img/Profile.png';
 
 const Profile = (props: { user: UserResponse | undefined }) => {
     return (
         <Card className={styles.profileCard} sx={{ borderRadius: '24px'}}>
-            <img src={`http://localhost:5209${props.user?.avatar}`} alt="Auth" className={styles.avatar}/>
-
+            <Box
+              component="img" className={styles.avatar}
+              alt="The house from the offer."
+              src={props.user?.avatar ? `http://localhost:5209${props.user?.avatar}` : profile}/>
             <Grid
                 container
                 rowSpacing={2}

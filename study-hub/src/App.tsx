@@ -28,7 +28,7 @@ const theme = createTheme({
 
 function App() {
   return (
-    <SnackbarProvider>
+    <SnackbarProvider maxSnack={3}>
       <ThemeProvider theme={theme}>
         <GoogleOAuthProvider
           clientId="738777886358-745pr29p66qlearc5r7mc7lve57lebcn.apps.googleusercontent.com"
