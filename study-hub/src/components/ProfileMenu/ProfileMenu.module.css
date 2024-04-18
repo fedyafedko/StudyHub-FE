@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 30px;
     background-color: #dedede;
 }
@@ -42,6 +41,7 @@
     margin-top: 80%;
     width: 250px;
     align-items: center;
+    cursor: pointer;
     height: 100px;
     background-color: #ffffff;
 }

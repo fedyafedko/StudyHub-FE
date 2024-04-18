@@ -15,7 +15,7 @@ const User = {
     inviteUser: async (request: InviteUserRequest): Promise<ResultResponse | undefined> => {
         const response = await API.post<InviteUserRequest, ResultResponse>('/users/invite', { emails: request.emails, role: request.role });
         if (response.success) {
-            return response.data;
+            return response.data;   
         }
     },
 

@@ -4,9 +4,45 @@ import styles from './ProfileMenu.module.css';
 import UserResponse from "../../api/models/response/UserResponse";
 import { useNavigate } from "react-router-dom";
 import profile from '../../img/Profile.png';
+import { useEffect, useState } from "react";
+import AssignmentResponse from "../../api/models/response/AssignmentResponse";
+import Assignment from "../../api/Assignment";
 
-const ProfileMenu = (props: {user: UserResponse | undefined}) => {
+function splitDateTime(dateTime: Date) {
+    // Extract date components
+    const dateString = dateTime.toLocaleDateString("en", {
+        year: "numeric",
+        day: "2-digit",
+        month: "long",
+      });
+
+    // Extract time components
+    const timeString = dateTime.toLocaleTimeString();
+
+    return (
+        <div>
+            <div>{dateString}</div>
+            <div>{timeString}</div>
+        </div>
+    );
+}
+
+const ProfileMenu = (props: { user: UserResponse | undefined }) => {
     const navigate = useNavigate();
+    const [assignments, setAssignments] = useState<AssignmentResponse | undefined>();
+
+    useEffect(() => {
+        const fetchAssignments = async () => {
+            try {
+                const response = await Assignment.getNextAssignment();
+                setAssignments(response);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchAssignments();
+    }, []);
     return (
         <Box className={styles.profileBox}>
             <Typography sx={{
@@ -29,16 +65,20 @@ const ProfileMenu = (props: {user: UserResponse | undefined}) => {
                     Profile
                 </Button>
             </Card>
-            <Card className={styles.nextExamCard}
-                sx={{ borderRadius: '24px' }}>
-                <img src={courses} alt="courses" className={styles.examImg} />
-                <Box className={styles.nameBox}>
-                    <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
-                        World Economy Exam
-                    </Typography>
-                    <Typography sx={{ fontSize: '11px' }}>Monday, 15 May 2023<br />11AM</Typography>
-                </Box>
-            </Card>
+            {props.user?.role === 'Student' ? (
+                <Card className={styles.nextExamCard} sx={{ borderRadius: '24px' }} onClick={() => navigate(`/assignment/${assignments?.id}`)}>
+                    <img src={courses} alt="courses" className={styles.examImg} />
+                    <Box className={styles.nameBox}>
+                        <Typography sx={{ fontWeight: 'bold', fontSize: '16px' }}>
+                            {assignments?.title}
+                        </Typography>
+                        <Typography sx={{ fontSize: '14px' }}>
+                            {assignments?.openingDate ? splitDateTime(new Date(assignments.openingDate)) : ''}
+                        </Typography>
+                    </Box>
+                </Card>
+            ) : null}
+
         </Box>
     );
 };
