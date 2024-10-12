@@ -1,4 +1,4 @@
-import { Box, Button, Card, FormControl, IconButton, Input, InputAdornment, InputLabel, Link, TextField } from "@mui/material";
+import { Box, Button, Divider, IconButton, InputAdornment, TextField } from "@mui/material";
 import google from '../../../img/google.png';
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import React, { useState } from "react";
@@ -69,90 +69,79 @@ const SignInForm = () => {
 
     return (
         <>
-            <Card
-                component="form"
-                className={styles.formCard}
+            <Box
                 sx={{
-                    borderRadius: '24px',
-                    '& > :not(style)': {
-                        m: 1, width: '300px'
-                    }
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '20px',
-                    }}>
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                    width: '60%',
+                }}>
+                <TextField
+                    id="email"
+                    label="Email"
+                    variant="standard"
+                    {...register('email')}
+                    error={!!errors.email}
+                    helperText={errors.email?.message || ' '}
+                />
+                <Box className={styles.passwordContainer}>
                     <TextField
-                        id="email"
-                        label="Email"
+                        id="password"
+                        label="Password"
                         variant="standard"
-                        {...register('email')}
-                        error={!!errors.email}
-                        helperText={errors.email?.message || ' '}
+                        type={showPassword ? 'text' : 'password'}
+                        {...register('password')}
+                        error={!!errors.password}
+                        helperText={errors.password?.message || ' '}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
                     />
-                    <Box className={styles.passwordContainer}>
-                        <TextField
-                            id="password"
-                            label="Password"
-                            variant="standard"
-                            type={showPassword ? 'text' : 'password'}
-                            {...register('password')}
-                            error={!!errors.password}
-                            helperText={errors.password?.message || ' '}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={handleClickShowPassword}
-                                            onMouseDown={handleMouseDownPassword}
-                                        >
-                                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                        <ForgotPasswordWindow />
-                    </Box>
+                    <ForgotPasswordWindow />
                 </Box>
-                <Box className={styles.buttonContainer}>
-                    <Button
-                        variant="contained"
-                        onClick={handleSubmit(handleSignIn)}
-                        sx={{
-                            backgroundColor: '#D41A6D',
-                            borderRadius: '24px',
-                            textTransform: 'none',
-                            padding: '10px',
-                        }}
-                    >
-                        Sign In
-                    </Button>
-                    <Button
-                        variant="contained"
-                        onClick={handleGoogleSignIn}
-                        sx={{
-                            backgroundColor: '#ffffff',
-                            borderRadius: '24px',
-                            textTransform: 'none',
-                            padding: '10px',
-                            color: '#000000',
-                            ":hover": {
-                                color: '#ffffff',
-                            }
-                        }}
-                    >
-                        <img src={google} alt="Google" style={{ width: '25px', height: '25px', margin: '0 10px' }} />
-                        Continue with Google
-                    </Button>
-                </Box>
-            </Card>
+            </Box>
+            <Box className={styles.buttonContainer}>
+                <Button
+                    variant="contained"
+                    onClick={handleSubmit(handleSignIn)}
+                    sx={{
+                        backgroundColor: '#D41A6D',
+                        borderRadius: '24px',
+                        textTransform: 'none',
+                        padding: '10px',
+                    }}
+                >
+                    Sign In
+                </Button>
+                <Divider sx={{ minWidth: '400' }}>Or</Divider>
+                <Button
+                    variant="contained"
+                    onClick={handleGoogleSignIn}
+                    sx={{
+                        backgroundColor: '#ffffff',
+                        borderRadius: '24px',
+                        textTransform: 'none',
+                        padding: '10px',
+                        color: '#000000',
+                        ":hover": {
+                            color: '#ffffff',
+                        }
+                    }}
+                >
+                    <img src={google} alt="Google" style={{ width: '25px', height: '25px', margin: '0 10px' }} />
+                    Continue with Google
+                </Button>
+            </Box>
             <Notification />
         </>
     );
