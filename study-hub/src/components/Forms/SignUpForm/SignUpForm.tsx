@@ -1,4 +1,4 @@
-import { Box, Button, Card, IconButton, InputAdornment, TextField } from "@mui/material";
+import { Button, Divider, IconButton, InputAdornment, TextField } from "@mui/material";
 import google from '../../../img/google.png';
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import React, { useState } from "react";
@@ -44,7 +44,7 @@ const SignUpForm = () => {
         console.log(data);
         const response = await Auth.signUp(data);
         if (response === undefined) {
-            navigate('/'); 
+            navigate('/');
         }
         else {
             notifyError(response);
@@ -59,7 +59,7 @@ const SignUpForm = () => {
 
             const response = await Auth.signUpGoogle(codeResp.code, token == undefined ? '' : token);
             if (response === undefined) {
-                navigate('/dashboard'); 
+                navigate('/dashboard');
             }
             else {
                 notifyError(response);
@@ -71,97 +71,86 @@ const SignUpForm = () => {
 
     return (
         <>
-            <Card
-                component="form"
-                className={styles.formCard}
-                sx={{
-                    borderRadius: '24px',
-                    '& > :not(style)': {
-                        m: 1, width: '300px'
-                    }
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <Box
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                    width: '60%',
+                }}>
+                <TextField
+                    id="fullName"
+                    label="Full Name"
+                    variant="standard"
+                    {...register('fullName')}
+                    error={!!errors.fullName}
+                    helperText={errors.fullName?.message || ' '}
+                />
+                <TextField
+                    id="email"
+                    label="Email"
+                    variant="standard"
+                    {...register('email')}
+                    error={!!errors.email}
+                    helperText={errors.email?.message || ' '}
+                />
+                <div className={styles.passwordContainer}>
+                    <TextField
+                        id="password"
+                        label="Password"
+                        variant="standard"
+                        type={showPassword ? 'text' : 'password'}
+                        {...register('password')}
+                        error={!!errors.password}
+                        helperText={errors.password?.message || ' '}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </div>
+            </div>
+            <div className={styles.buttonContainer}>
+                <Button
+                    variant="contained"
+                    onClick={handleSubmit(handleSignUp)}
                     sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '20px',
-                    }}>
-                    <TextField
-                        id="fullName"
-                        label="Full Name"
-                        variant="standard"
-                        {...register('fullName')}
-                        error={!!errors.fullName}
-                        helperText={errors.fullName?.message || ' '}
-                    />
-                    <TextField
-                        id="email"
-                        label="Email"
-                        variant="standard"
-                        {...register('email')}
-                        error={!!errors.email}
-                        helperText={errors.email?.message || ' '}
-                    />
-                    <Box className={styles.passwordContainer}>
-                        <TextField
-                            id="password"
-                            label="Password"
-                            variant="standard"
-                            type={showPassword ? 'text' : 'password'}
-                            {...register('password')}
-                            error={!!errors.password}
-                            helperText={errors.password?.message || ' '}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={handleClickShowPassword}
-                                            onMouseDown={handleMouseDownPassword}
-                                        >
-                                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Box>
-                </Box>
-                <Box className={styles.buttonContainer}>
-                    <Button
-                        variant="contained"
-                        onClick={handleSubmit(handleSignUp)}
-                        sx={{
-                            backgroundColor: '#D41A6D',
-                            borderRadius: '24px',
-                            textTransform: 'none',
-                            padding: '10px',
-                        }}
-                    >
-                        Sign Up
-                    </Button>
-                    <Button
-                        variant="contained"
-                        onClick={handleGoogleSignUp}
-                        sx={{
-                            backgroundColor: '#ffffff',
-                            borderRadius: '24px',
-                            textTransform: 'none',
-                            padding: '10px',
-                            color: '#000000',
-                            ":hover": {
-                                color: '#ffffff',
-                            }
-                        }}
-                    >
-                        <img src={google} alt="Google" style={{ width: '25px', height: '25px', margin: '0 10px' }} />
-                        Continue with Google
-                    </Button>
-                </Box>
-            </Card>
+                        backgroundColor: '#D41A6D',
+                        borderRadius: '24px',
+                        textTransform: 'none',
+                        padding: '10px',
+                    }}
+                >
+                    Sign Up
+                </Button>
+                <Divider sx={{ minWidth: '400' }}>Or</Divider>
+                <Button
+                    variant="contained"
+                    onClick={handleGoogleSignUp}
+                    sx={{
+                        backgroundColor: '#ffffff',
+                        borderRadius: '24px',
+                        textTransform: 'none',
+                        padding: '10px',
+                        color: '#000000',
+                        ":hover": {
+                            color: '#ffffff',
+                        }
+                    }}
+                >
+                    <img src={google} alt="Google" style={{ width: '25px', height: '25px', margin: '0 10px' }} />
+                    Continue with Google
+                </Button>
+            </div>
             <Notification />
         </>
     );

@@ -1,4 +1,4 @@
-import { Box, Button, Divider, IconButton, InputAdornment, TextField } from "@mui/material";
+import { Button, Divider, IconButton, InputAdornment, TextField } from "@mui/material";
 import google from '../../../img/google.png';
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import React, { useState } from "react";
@@ -69,8 +69,8 @@ const SignInForm = () => {
 
     return (
         <>
-            <Box
-                sx={{
+            <div
+                style={{
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '20px',
@@ -84,7 +84,7 @@ const SignInForm = () => {
                     error={!!errors.email}
                     helperText={errors.email?.message || ' '}
                 />
-                <Box className={styles.passwordContainer}>
+                <div className={styles.passwordContainer}>
                     <TextField
                         id="password"
                         label="Password"
@@ -108,9 +108,9 @@ const SignInForm = () => {
                         }}
                     />
                     <ForgotPasswordWindow />
-                </Box>
-            </Box>
-            <Box className={styles.buttonContainer}>
+                </div>
+            </div >
+            <div className={styles.buttonContainer}>
                 <Button
                     variant="contained"
                     onClick={handleSubmit(handleSignIn)}
@@ -141,7 +141,7 @@ const SignInForm = () => {
                     <img src={google} alt="Google" style={{ width: '25px', height: '25px', margin: '0 10px' }} />
                     Continue with Google
                 </Button>
-            </Box>
+            </div>
             <Notification />
         </>
     );

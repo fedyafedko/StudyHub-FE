@@ -4,7 +4,7 @@ import APIResponse from "../models/response/APIResponse";
 import RefreshTokenRequest from "../models/request/Auth/RefreshTokenRequest";
 import Auth from "../Auth";
 
-const API_URL = 'http://localhost:5209/api';
+const API_URL = 'https://localhost:7019/api';
 
 const axiosInstance = axios.create();
 

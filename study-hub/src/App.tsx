@@ -1,6 +1,4 @@
 import './App.css';
-import SignInPage from './pages/SignInPage/SignInPage';
-import SignUpPage from './pages/SignUpPage/SignUpPage';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -13,6 +11,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ListSubjectsPage from './pages/ListSubjectsPage/ListSubjectsPage';
 import SubjectPage from './pages/SubjectPage/SubjectPage';
+import AuthPage from './pages/AuthPage/AuthPage';
 
 const theme = createTheme({
   palette: {
@@ -37,8 +36,8 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/reset-password/:email/:token" element={<ForgotPasswordPage />} />
-              <Route path="/sign-up/:token" element={<SignUpPage />} />
-              <Route path="/sign-in" element={<SignInPage />} />
+              <Route path="/sign-up/:token" element={<AuthPage toRenderFullname={true} />} />
+              <Route path="/sign-in" element={<AuthPage toRenderFullname={false} />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/subjects" element={<ListSubjectsPage />} />
               <Route path="/subject/:id" element={<SubjectPage />} />

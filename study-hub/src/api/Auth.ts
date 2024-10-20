@@ -60,7 +60,7 @@ const Auth = {
     },
     forgotPassword: async (email: string): Promise<any> => {
         const response = await API.post<{}, {}>('/auth/forgot-password', { email });
-
+        console.log(response);
         if (response.success) {
             return undefined;
         }

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import styles from './ForgotPasswordWindow.module.css';
 import useNotification from '../../hooks/useNotification';
 import { useForm } from 'react-hook-form';
@@ -60,16 +58,22 @@ const ForgotPasswordWindow = () => {
                 }}
             >
                 <Fade in={open}>
-                    <Box className={styles.fradeBox}>
-                        <CloseIcon onClick={handleClose} className={styles.closeIcon} />
-                        <Typography id="transition-modal-title" variant="h5" component="h2"
+                    <div className={styles.fradeBox}>
+                        <Typography id="transition-modal-title" variant="h4"
                             sx={{
                                 fontWeight: 'bold',
                                 textAlign: 'center',
                             }}>
-                            Forgot<br />Your Password?
+                            Forgot Password
                         </Typography>
-                        <Box className={styles.formBox}>
+                        <Typography id="spring-modal-description" variant="h6" style={{
+                            fontWeight: 'lighter',
+                            textAlign: 'center',
+                            marginTop: '4px'
+                        }}>
+                            No worries, We'll send you instructions for reset
+                        </Typography>
+                        <div className={styles.formBox}>
                             <TextField
                                 label="Email"
                                 variant="outlined"
@@ -77,22 +81,40 @@ const ForgotPasswordWindow = () => {
                                 error={!!errors.email}
                                 helperText={errors.email?.message || ' '}
                                 sx={{
-                                    width: '300px',
+                                    width: '100%',
+                                    marginTop: '35px'
                                 }} />
-                            <Button 
-                            variant="contained"
-                            color="primary"
-                            onClick={handleSubmit(handleForgotPassword)}
-                            sx={{
-                                borderRadius: '24px',
-                                width: '300px',
-                            }}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleSubmit(handleForgotPassword)}
+                                sx={{
+                                    borderRadius: '12px',
+                                    width: '100%',
+                                    height: '50px'
+                                }}>
                                 Reset Password
                             </Button>
-                        </Box>
-                    </Box>
+                            <Button
+                                variant="contained"
+                                onClick={handleClose}
+                                sx={{
+                                    borderRadius: '12px',
+                                    width: '100%',
+                                    height: '50px',
+                                    backgroundColor: '#ffffff',
+                                    color: '#080808',
+                                    textTransform: 'none',
+                                    ":hover": {
+                                        color: '#ffffff',
+                                    }
+                                }}>
+                                Back
+                            </Button>
+                        </div>
+                    </div>
                 </Fade>
-            </Modal>
+            </Modal >
             <Button
                 onClick={handleOpen}
                 sx={{
@@ -109,7 +131,7 @@ const ForgotPasswordWindow = () => {
                 }}>
                 Forgot password?
             </Button>
-            <Notification/>
+            <Notification />
         </>
     );
 }

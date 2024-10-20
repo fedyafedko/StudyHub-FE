@@ -11,14 +11,14 @@
 }
 
 .imageContainer{
-    max-width: 50%;
+    max-width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .authImg{
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
 }
 
